@@ -1,6 +1,5 @@
 <h3>First Data<br>
 Payment Module for osCommerce 2.3</h3>
-<br>
 Released under the GNU General Public License
 
 =============================================================
@@ -9,7 +8,7 @@ Released under the GNU General Public License
 <br>
 First Data Payment Module is developed by Endri Prifti.<br>
 This document with instructions is written by Endri Prifti.<br>
-Contact: endri@msn.com<br>
+Contact: endri@msn.com
 
 =============================================================
 
@@ -19,7 +18,7 @@ First, make sure:<br>
 • You should have an account with a Bank that uses First Data ECOMM system.<br>
 • Update the links on FirstData ECOMM panel.<br>
 For returnOkUrl use, for example: <pre>http://localhost:9999/catalog/ext/modules/payment/firstdata/firstdata_callback.php</pre><br>
-For returnFailUrl use, for example: <pre>http://localhost:9999/catalog/ext/modules/payment/firstdata/firstdata_callback_fail.php</pre><br>
+For returnFailUrl use, for example: <pre>http://localhost:9999/catalog/ext/modules/payment/firstdata/firstdata_callback_fail.php</pre>
 
 =============================================================
 
@@ -32,7 +31,7 @@ Copy the content of the "FirstData" folder to "catalog" folder of osCommerce ins
 
 =============================================================
 
-Modify the following files:<br>
+Modify the following files:
 
 1. ..\catalog\admin\orders.php<br>
 around line 70<br>
@@ -109,7 +108,7 @@ Enter osCommerce Administrator's Panel, go to Modules > Payment.<br>
 Install, if it isn't already installed.<br>
 Enable First Data Payment Module, if it isn't already.<br>
 Edit First Data Payment Module, and put the required information.
-<br><br>
+<br>
 Put the path where Keystore is located, (just use single slashes, as in the example)<br>
 e.g.: <pre>C:/xampp/htdocs/eshop/ext/modules/payment/firstdata/keystore.pem</pre>
 <br>
@@ -118,9 +117,9 @@ Put the keystore Passphrase.
 For the test environment:<br>
 Put on Handler Server URL: <pre>https://secureshop-test.firstdata.lv:8443/ecomm/MerchantHandler</pre><br>
 Put on Handler Client URL: <pre>https://secureshop-test.firstdata.lv/ecomm/ClientHandler</pre>
-<br><br>
+<br>
 For the production environment:<br>
 Put on Handler Server URL: <pre>https://secureshop.firstdata.lv:8443/ecomm/MerchantHandler</pre><br>
 Put on Handler Client URL: <pre>https://secureshop.firstdata.lv/ecomm/ClientHandler</pre>
-<br><br>
+<br>
 For the other fields, don't change anything.
