@@ -18,12 +18,12 @@ First, make sure:<br>
 • Delete other currencies.<br>
 • You should have an account with a Bank that uses First Data ECOMM system.<br>
 • Update the links on FirstData ECOMM panel.<br>
-For returnOkUrl use, for example: http://localhost:9999/catalog/ext/modules/payment/firstdata/firstdata_callback.php<br>
-For returnFailUrl use, for example: http://localhost:9999/catalog/ext/modules/payment/firstdata/firstdata_callback_fail.php<br>
+For returnOkUrl use, for example: <pre>http://localhost:9999/catalog/ext/modules/payment/firstdata/firstdata_callback.php</pre><br>
+For returnFailUrl use, for example: <pre>http://localhost:9999/catalog/ext/modules/payment/firstdata/firstdata_callback_fail.php</pre><br>
 
 =============================================================
 
-Notes:
+Notes:<br>
 • Every end of day (at 23:59, but not necessary), the operator (administrator) of osCommerce 2.x should perform the Bussiness Day Closing in order to receive the money in his account at his Bank which operates with First Data Latvia.
 
 =============================================================
@@ -32,13 +32,13 @@ Copy the content of the "FirstData" folder to "catalog" folder of osCommerce ins
 
 =============================================================
 
-Modify the following files:
+Modify the following files:<br>
 
-1. ..\catalog\admin\orders.php
-around line 70
-find "case 'deleteconfirm':"
-substitute all the case with this:
-
+1. ..\catalog\admin\orders.php<br>
+around line 70<br>
+find <pre>"case 'deleteconfirm':</pre>"<br>
+substitute all the case with this:<br>
+<pre>
       case 'deleteconfirm':
     	require_once(DIR_FS_CATALOG . 'ext/modules/payment/firstdata/Merchant.php');
 
@@ -73,53 +73,54 @@ substitute all the case with this:
 
 		tep_redirect(tep_href_link(FILENAME_ORDERS, tep_get_all_get_params(array('oID', 'action'))));
         break;
+</pre>
+----------------------------------------------------------------------------------------
+
+2. ..\catalog\admin\includes\languages\english.php<br>
+	around line 85, add: <pre>define('BOX_CUSTOMERS_BUSINESS_DAY_CLOSING', 'Business Day Closing');</pre><br>
+	around line 197, add: <pre>define('IMAGE_CLOSE_DAY', 'Close Day');</pre>
 
 ----------------------------------------------------------------------------------------
 
-2. ..\catalog\admin\includes\languages\english.php
-	around line 85, add: define('BOX_CUSTOMERS_BUSINESS_DAY_CLOSING', 'Business Day Closing');
-	around line 197, add: define('IMAGE_CLOSE_DAY', 'Close Day');
+3. ..\catalog\admin\includes\filenames.php<br>
+	around line 19, add: <pre>define('FILENAME_BUSINESS_DAY_CLOSING', 'business_day_closing.php');</pre>
 
 ----------------------------------------------------------------------------------------
 
-3. ..\catalog\admin\includes\filenames.php
-	around line 19, add: define('FILENAME_BUSINESS_DAY_CLOSING', 'business_day_closing.php');
-
-----------------------------------------------------------------------------------------
-
-4. ..\catalog\admin\includes\languages\english\orders.php
-around line 80, add:
+4. ..\catalog\admin\includes\languages\english\orders.php<br>
+around line 80, add:<br><pre>
 	define('ERROR_ORDER_CANT_BE_DELETED_AMOUNT_CANT_BE_REVERSED', 'Error: Can NOT delete order because payment can NOT be reverted.');
-	define('SUCCESS_ORDER_DELETED_AMOUNT_REVERSED', 'Success: Order has been successfully deleted and payment reverted.');
+	define('SUCCESS_ORDER_DELETED_AMOUNT_REVERSED', 'Success: Order has been successfully deleted and payment reverted.');</pre>
 
 ----------------------------------------------------------------------------------------
 
-5. ..\catalog\admin\includes\boxes\customers.php
-around line 25, add:
+5. ..\catalog\admin\includes\boxes\customers.php<br>
+around line 25, add:<br>
+<pre>
       ,array(
         'code' => FILENAME_BUSINESS_DAY_CLOSING,
         'title' => BOX_CUSTOMERS_BUSINESS_DAY_CLOSING,
         'link' => tep_href_link(FILENAME_BUSINESS_DAY_CLOSING)
-      )
+      )</pre>
 
 =============================================================
 
-Enter osCommerce Administrator's Panel, go to Modules > Payment.
-Install, if it isn't already installed.
-Enable First Data Payment Module, if it isn't already.
+Enter osCommerce Administrator's Panel, go to Modules > Payment.<br>
+Install, if it isn't already installed.<br>
+Enable First Data Payment Module, if it isn't already.<br>
 Edit First Data Payment Module, and put the required information.
-
-Put the path where Keystore is located, (just use single slashes, as in the example)
-e.g.: C:/xampp/htdocs/eshop/ext/modules/payment/firstdata/keystore.pem
-
+<br><br>
+Put the path where Keystore is located, (just use single slashes, as in the example)<br>
+e.g.: <pre>C:/xampp/htdocs/eshop/ext/modules/payment/firstdata/keystore.pem</pre>
+<br>
 Put the keystore Passphrase.
-
-For the test environment:
-Put on Handler Server URL: https://secureshop-test.firstdata.lv:8443/ecomm/MerchantHandler
-Put on Handler Client URL: https://secureshop-test.firstdata.lv/ecomm/ClientHandler
-
-For the production environment:
-Put on Handler Server URL: https://secureshop.firstdata.lv:8443/ecomm/MerchantHandler
-Put on Handler Client URL: https://secureshop.firstdata.lv/ecomm/ClientHandler
-
+<br>
+For the test environment:<br>
+Put on Handler Server URL: <pre>https://secureshop-test.firstdata.lv:8443/ecomm/MerchantHandler</pre><br>
+Put on Handler Client URL: <pre>https://secureshop-test.firstdata.lv/ecomm/ClientHandler</pre>
+<br><br>
+For the production environment:<br>
+Put on Handler Server URL: <pre>https://secureshop.firstdata.lv:8443/ecomm/MerchantHandler</pre><br>
+Put on Handler Client URL: <pre>https://secureshop.firstdata.lv/ecomm/ClientHandler</pre>
+<br><br>
 For the other fields, don't change anything.
